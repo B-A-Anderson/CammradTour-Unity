@@ -31,15 +31,15 @@ public class Display : MonoBehaviour
 
         // The user authorized use of the storage.
         //present = new ObjFromFile();
-        result = QRResultManager.QRResults;
-        ObjFromFile.onStart(result);
-        textOut.text = ObjFromFile.OutputPath(result);
+        ObjFromFile.OnGUI();
+        textOut.text = ObjFromFile.OutputPath();
     }
 
     // Update is called once per frame
     void Update()
     {
         UpdateCameraRender();
+        
         if (!Permission.HasUserAuthorizedPermission(Permission.ExternalStorageRead))
         {
             Permission.RequestUserPermission(Permission.ExternalStorageRead);

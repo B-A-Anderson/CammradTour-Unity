@@ -17,9 +17,9 @@ public class ObjFromFile : MonoBehaviour
     //public TextMeshProUGUI textOut;
     //string result = QRCodeScanner.scene1.QRResults;
 
-    public static void onStart(string result) {
+    public static void OnGUI() {
         
-        objPath = Findfile(result);
+        objPath = Findfile(QRResultManager.QRResults);
         //textOut.text = objPath;
 
         //file path
@@ -45,9 +45,9 @@ public class ObjFromFile : MonoBehaviour
         }*/
     }
 
-    public static string OutputPath(string result)
+    public static string OutputPath()
     {
-        return Findfile(result);
+        return Findfile(QRResultManager.QRResults);
     }
 
     public void deleteModel()
