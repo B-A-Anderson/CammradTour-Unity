@@ -9,15 +9,15 @@ using UnityEngine.SceneManagement;
 
 public class ObjFromFile : MonoBehaviour
 {
-    string objPath = string.Empty;
-    string error = string.Empty;
-    GameObject loadedObject;
-    public GameObject Gparent;
+    static string objPath = string.Empty;
+    static string error = string.Empty;
+    static GameObject loadedObject;
+    public static GameObject Gparent;
 
     //public TextMeshProUGUI textOut;
     //string result = QRCodeScanner.scene1.QRResults;
 
-    public void onStart(string result) {
+    public static void onStart(string result) {
         
         objPath = Findfile(result);
         //textOut.text = objPath;
@@ -45,7 +45,7 @@ public class ObjFromFile : MonoBehaviour
         }*/
     }
 
-    public string OutputPath(string result)
+    public static string OutputPath(string result)
     {
         return Findfile(result);
     }
@@ -57,7 +57,7 @@ public class ObjFromFile : MonoBehaviour
     }
     
 
-    private string Findfile(string QRResults)
+    private static string Findfile(string QRResults)
     {
         string directory = @"\storage\emulated\0\Download";
         //var directory = Application.persistentDataPath;
