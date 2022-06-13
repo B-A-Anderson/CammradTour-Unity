@@ -59,11 +59,12 @@ public class ObjFromFile : MonoBehaviour
 
     private string Findfile(string QRResults)
     {
-        //string directory = @"\storage\emulated\0\Download";
-        var directory = Application.persistentDataPath;
+        string directory = @"\storage\emulated\0\Download";
+        //var directory = Application.persistentDataPath;
         int compare;
         bool inFile = false;
-        string target = "", all = directory + "\\Download\\" + QRResults, path;
+        string target = "", all = directory + "\\" + QRResults;
+        string path;
 
         foreach (string file in Directory.EnumerateFiles(directory, "*.obj"))
         {

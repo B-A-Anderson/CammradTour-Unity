@@ -1,0 +1,21 @@
+Flow:
+The first scene would scan a qrcode and receive the key from it. Clicking the button will take you to the second scene.
+The app should then use the key and search for the file path of the obj file with the same name in the phone's storage with a function named FindFile() in the ObjFromFile class
+["\storage\emulated\0\Download" this is the directory will be in the phone and the function will target there]
+(this part will be later changed but for test purpose this is what will be done)
+After this, it will use that file path to present that 3D model and show the path at the top.
+There is a button at the bottom that will take you back to the first scene.
+
+Issues:
+The QRCodeScanner class goes to the first scene and works perfectly
+
+The Display class and ObjFromFile class is for the second scene.
+
+The camera from the display class works good but for some reason every thing else doesn't. The button is unresponsive and doesn't go back to the first scene
+and the TextMeshPro doesn't change the text to display the file path.
+
+The ObjFromFile class is for loadiing the obj model into the scene. It's a part of a package I downloaded and there's a statement that loads the 3D model
+
+loadedObject = new OBJLoader().Load(objPath);
+
+I tested the package seperately and it works perfectly there, but for some reason it is not doing that in the scene.
