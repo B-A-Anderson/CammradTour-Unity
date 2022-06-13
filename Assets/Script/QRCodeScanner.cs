@@ -24,7 +24,6 @@ public class QRCodeScanner : MonoBehaviour
     private WebCamTexture cameraTexture;
 
     public static QRCodeScanner scene1;
-    public string QRResults;
 
 
     // Start is called before the first frame update
@@ -87,7 +86,7 @@ public class QRCodeScanner : MonoBehaviour
             if (result != null)
             {
                 textOut.text = result.Text;
-                QRResults = result.Text;
+                QRResultManager.QRResults = textOut.text;
             }
             else
             {

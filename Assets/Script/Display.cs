@@ -20,69 +20,36 @@ public class Display : MonoBehaviour
 
     public static Display scene2;
 
-    public ObjFromFile present;
+    //public ObjFromFile present;
     public TextMeshProUGUI textOut;
     string result;
-
-    internal void PermissionCallbacks_PermissionDeniedAndDontAskAgain(string permissionName)
-    {
-        //Debug.Log($"{permissionName} PermissionDeniedAndDontAskAgain");
-    }
-
-    internal void PermissionCallbacks_PermissionGranted(string permissionName)
-    {
-        //Debug.Log($"{permissionName} PermissionCallbacks_PermissionGranted");
-    }
-
-    internal void PermissionCallbacks_PermissionDenied(string permissionName)
-    {
-        //Debug.Log($"{permissionName} PermissionCallbacks_PermissionDenied");
-    }
 
     // Start is called before the first frame update
     void Start()
     {
         SetUpCamera();
 
-        if (Permission.HasUserAuthorizedPermission(Permission.ExternalStorageRead))
-        {
-            // The user authorized use of the storage.
-            present = new ObjFromFile();
-            result = QRCodeScanner.scene1.QRResults;
-            present.onStart(result);
-            textOut.text = present.OutputPath(result);
-        }
-        else
-        {
-            bool useCallbacks = false;
-            if (!useCallbacks)
-            {
-                // We do not have permission to use the storage.
-                // Ask for permission or proceed without the functionality enabled.
-                Permission.RequestUserPermission(Permission.ExternalStorageRead);
-            }
-            else
-            {
-                var callbacks = new PermissionCallbacks();
-                callbacks.PermissionDenied += PermissionCallbacks_PermissionDenied;
-                callbacks.PermissionGranted += PermissionCallbacks_PermissionGranted;
-                callbacks.PermissionDeniedAndDontAskAgain += PermissionCallbacks_PermissionDeniedAndDontAskAgain;
-                Permission.RequestUserPermission(Permission.ExternalStorageRead, callbacks);
-            }
-        }
+        // The user authorized use of the storage.
+        //present = new ObjFromFile();
+        result = QRResultManager.QRResults;
+        ObjFromFile.onStart(result);
+        textOut.text = ObjFromFile.OutputPath(result);
     }
 
     // Update is called once per frame
     void Update()
     {
         UpdateCameraRender();
+        if (!Permission.HasUserAuthorizedPermission(Permission.ExternalStorageRead))
+        {
+            Permission.RequestUserPermission(Permission.ExternalStorageRead);
+        }
     }
 
     private void Awake()
     {
         scene2 = this;
         DontDestroyOnLoad(this.gameObject);
-        result = QRCodeScanner.scene1.QRResults;
     }
 
     private void SetUpCamera()
@@ -123,7 +90,6 @@ public class Display : MonoBehaviour
 
     public void onClickChangeScene()
     {
-        present.deleteModel();
         SceneManager.LoadScene("Scanner", LoadSceneMode.Single);
     }
 }
