@@ -37,11 +37,6 @@ public class Display : MonoBehaviour
     void Update()
     {
         UpdateCameraRender();
-        
-        if (!Permission.HasUserAuthorizedPermission(Permission.ExternalStorageRead))
-        {
-            Permission.RequestUserPermission(Permission.ExternalStorageRead);
-        }
     }
 
     private void SetUpCamera()

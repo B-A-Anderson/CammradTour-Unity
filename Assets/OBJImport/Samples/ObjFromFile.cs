@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Android;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ObjFromFile : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class ObjFromFile : MonoBehaviour
     //public TextMeshProUGUI textOut;
     //string result = QRCodeScanner.scene1.QRResults;
 
-    public void Start() {
+    void Start() {
         
         objPath = Findfile(QRResultManager.QRResults);
         //textOut.text = objPath;
@@ -43,6 +44,14 @@ public class ObjFromFile : MonoBehaviour
             GUI.Box(new Rect(0, 64, 256 + 64, 32), error);
             GUI.color = Color.white;
         }*/
+    }
+
+    void Update()
+    {
+        if (!Permission.HasUserAuthorizedPermission(Permission.ExternalStorageRead))
+        {
+            Permission.RequestUserPermission(Permission.ExternalStorageRead);
+        }
     }
 
     public static string OutputPath()
