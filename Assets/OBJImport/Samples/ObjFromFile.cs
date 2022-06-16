@@ -17,7 +17,7 @@ public class ObjFromFile : MonoBehaviour
     //public TextMeshProUGUI textOut;
     //string result = QRCodeScanner.scene1.QRResults;
 
-    public static void OnGUI() {
+    public void Start() {
         
         objPath = Findfile(QRResultManager.QRResults);
         //textOut.text = objPath;

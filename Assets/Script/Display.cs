@@ -18,8 +18,6 @@ public class Display : MonoBehaviour
     private bool isCamAvailible;
     private WebCamTexture cameraTexture;
 
-    public static Display scene2;
-
     //public ObjFromFile present;
     public TextMeshProUGUI textOut;
     string result;
@@ -31,7 +29,7 @@ public class Display : MonoBehaviour
 
         // The user authorized use of the storage.
         //present = new ObjFromFile();
-        ObjFromFile.OnGUI();
+        //ObjFromFile.OnGUI();
         textOut.text = ObjFromFile.OutputPath();
     }
 
@@ -44,12 +42,6 @@ public class Display : MonoBehaviour
         {
             Permission.RequestUserPermission(Permission.ExternalStorageRead);
         }
-    }
-
-    private void Awake()
-    {
-        scene2 = this;
-        DontDestroyOnLoad(this.gameObject);
     }
 
     private void SetUpCamera()

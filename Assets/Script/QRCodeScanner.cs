@@ -23,9 +23,6 @@ public class QRCodeScanner : MonoBehaviour
     private bool isCamAvailible;
     private WebCamTexture cameraTexture;
 
-    public static QRCodeScanner scene1;
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -36,12 +33,6 @@ public class QRCodeScanner : MonoBehaviour
     void Update()
     {
         UpdateCameraRender();
-    }
-    
-    private void Awake()
-    {
-        scene1 = this;
-        DontDestroyOnLoad(this.gameObject);
     }
 
     private void SetUpCamera()
