@@ -26,10 +26,6 @@ public class Display : MonoBehaviour
     void Start()
     {
         SetUpCamera();
-
-        // The user authorized use of the storage.
-        //present = new ObjFromFile();
-        //ObjFromFile.OnGUI();
         textOut.text = ObjFromFile.OutputPath();
     }
 

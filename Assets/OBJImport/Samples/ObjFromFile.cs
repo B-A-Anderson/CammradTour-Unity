@@ -11,9 +11,9 @@ using UnityEngine.UI;
 public class ObjFromFile : MonoBehaviour
 {
     static string objPath = string.Empty;
-    static string error = string.Empty;
-    static GameObject loadedObject;
-    public static GameObject Gparent;
+    string error = string.Empty;
+    GameObject loadedObject;
+    public GameObject Gparent;
 
     //public TextMeshProUGUI textOut;
     //string result = QRCodeScanner.scene1.QRResults;
