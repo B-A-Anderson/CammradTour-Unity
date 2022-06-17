@@ -444,7 +444,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rawImageBackground: {fileID: 0}
   aspectRatioFit: {fileID: 0}
-  present: {fileID: 0}
   textOut: {fileID: 0}
 --- !u!1 &800603062
 GameObject:
@@ -571,7 +570,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rawImageBackground: {fileID: 669603864}
   aspectRatioFit: {fileID: 669603863}
-  present: {fileID: 0}
   textOut: {fileID: 2104187630}
 --- !u!4 &1014324863
 Transform:

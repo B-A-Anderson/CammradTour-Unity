@@ -77,7 +77,7 @@ public class QRCodeScanner : MonoBehaviour
             if (result != null)
             {
                 textOut.text = result.Text;
-                QRResultManager.QRResults = textOut.text;
+                QRResultManager.QRResults = result.Text;
             }
             else
             {
@@ -92,6 +92,6 @@ public class QRCodeScanner : MonoBehaviour
 
     public void onClickChangeScene()
     {
-        SceneManager.LoadScene("DisplayNoAR", LoadSceneMode.Single);
+        SceneManager.LoadScene("DisplayNoAR");
     }
 }

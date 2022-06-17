@@ -16,13 +16,12 @@ public class ObjFromFile : MonoBehaviour
     GameObject loadedObject;
     public GameObject Gparent;
 
-    //public TextMeshProUGUI textOut;
-    //string result = QRCodeScanner.scene1.QRResults;
+    public TextMeshProUGUI textOut;
 
     void Start() {
         
-        objPath = Findfile(QRResultManager.QRResults);
-        //textOut.text = objPath;
+        objPath = OutputPath();
+        textOut.text = OutputPath();
 
         //file path
         if (!File.Exists(objPath))
@@ -73,7 +72,7 @@ public class ObjFromFile : MonoBehaviour
         var directory = Application.persistentDataPath;
         int compare;
         bool inFile = false;
-        string target = "", all = directory + "\\" + QRResults;
+        string target = "", all = directory + "/" + QRResults;
         string path;
 
         foreach (string file in Directory.EnumerateFiles(directory, "*.obj"))

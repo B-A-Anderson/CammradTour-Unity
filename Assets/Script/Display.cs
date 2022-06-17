@@ -18,15 +18,10 @@ public class Display : MonoBehaviour
     private bool isCamAvailible;
     private WebCamTexture cameraTexture;
 
-    //public ObjFromFile present;
-    public TextMeshProUGUI textOut;
-    string result;
-
     // Start is called before the first frame update
     void Start()
     {
         SetUpCamera();
-        textOut.text = ObjFromFile.OutputPath();
     }
 
     // Update is called once per frame
@@ -73,6 +68,6 @@ public class Display : MonoBehaviour
 
     public void onClickChangeScene()
     {
-        SceneManager.LoadScene("Scanner", LoadSceneMode.Single);
+        SceneManager.LoadScene("Scanner");
     }
 }
