@@ -1,4 +1,5 @@
 ﻿using Dummiesman;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -68,8 +69,8 @@ public class ObjFromFile : MonoBehaviour
 
     private static string Findfile(string QRResults)
     {
-        string directory = @"\storage\emulated\0\Download";
-        //var directory = Application.persistentDataPath;
+        //string directory = @"\storage\emulated\0\Download";
+        var directory = Application.persistentDataPath;
         int compare;
         bool inFile = false;
         string target = "", all = directory + "\\" + QRResults;
