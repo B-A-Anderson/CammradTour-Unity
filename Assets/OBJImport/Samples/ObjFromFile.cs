@@ -10,16 +10,20 @@ using UnityEngine.Android;
 public class ObjFromFile : MonoBehaviour
 {
     static string objPath = string.Empty;
-    string error = string.Empty;
+    //static string error = "";
     GameObject loadedObject;
     public GameObject Gparent;
 
     public TextMeshProUGUI textOut;
 
+    public TextMeshProUGUI errorMessages;
+
     void Start()
     {
         objPath = OutputPath();
         textOut.text = OutputPath();
+        errorMessages.text = string.Empty;
+        ErrorManager.CreatingTextFile();
         DisplayModel();
     }
 
@@ -28,7 +32,9 @@ public class ObjFromFile : MonoBehaviour
         //file path
         if (!File.Exists(objPath))
         {
-            error = "File doesn't exist.";
+            //error = "Line 31: File doesn't exist";
+            ErrorManager.WirteInFile("Line 31: File doesn't exist");
+
         }else{
             if(loadedObject != null)
             {
@@ -36,7 +42,9 @@ public class ObjFromFile : MonoBehaviour
             }
             
             loadedObject = new OBJLoader().Load(objPath);
-            error = string.Empty;
+            errorMessages.text = "Line 43: Should have loaded the object";
+            //error = "Line 43: Should have loaded the object";
+            ErrorManager.WirteInFile("Line 43: Should have loaded the object");
             loadedObject.transform.parent = Gparent.transform;
             loadedObject.transform.localPosition = new Vector3(0, -5, 0);
         }
@@ -86,7 +94,11 @@ public class ObjFromFile : MonoBehaviour
             path = target;
         }
         else
+        { 
             path = "No Path";
+            //error = "Line 95: Path was not found";
+            ErrorManager.WirteInFile("Line 95: Path was not found");
+        }
         
         return path;
     }
