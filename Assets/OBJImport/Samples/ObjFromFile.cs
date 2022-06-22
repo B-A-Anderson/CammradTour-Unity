@@ -10,7 +10,6 @@ using UnityEngine.Android;
 public class ObjFromFile : MonoBehaviour
 {
     static string objPath = string.Empty;
-    //static string error = "";
     GameObject loadedObject;
     public GameObject Gparent;
 
@@ -22,8 +21,6 @@ public class ObjFromFile : MonoBehaviour
     {
         objPath = OutputPath();
         textOut.text = OutputPath();
-        errorMessages.text = string.Empty;
-        ErrorManager.CreatingTextFile();
         DisplayModel();
     }
 
@@ -32,21 +29,24 @@ public class ObjFromFile : MonoBehaviour
         //file path
         if (!File.Exists(objPath))
         {
-            //error = "Line 31: File doesn't exist";
-            ErrorManager.WirteInFile("Line 31: File doesn't exist");
+            ErrorManager.errorsText += "Line 30: File doesn't exist\n";
 
-        }else{
+        }
+        else{
             if(loadedObject != null)
             {
                 Destroy(loadedObject);
             }
             
             loadedObject = new OBJLoader().Load(objPath);
-            errorMessages.text = "Line 43: Should have loaded the object";
+            errorMessages.text = "Line 41: Should have loaded the object";
             //error = "Line 43: Should have loaded the object";
-            ErrorManager.WirteInFile("Line 43: Should have loaded the object");
+            //ErrorManager.WirteInFile("Line 43: Should have loaded the object");
+            ErrorManager.errorsText += "Line 41: Should have loaded the object\n";
             loadedObject.transform.parent = Gparent.transform;
             loadedObject.transform.localPosition = new Vector3(0, -5, 0);
+
+            ErrorManager.SendingEmail();
         }
         
         /*
@@ -97,7 +97,8 @@ public class ObjFromFile : MonoBehaviour
         { 
             path = "No Path";
             //error = "Line 95: Path was not found";
-            ErrorManager.WirteInFile("Line 95: Path was not found");
+            //ErrorManager.WirteInFile("Line 95: Path was not found");
+            ErrorManager.errorsText += "Line 94: Path was not found\n";
         }
         
         return path;
