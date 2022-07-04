@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.IO;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Android;
+using UnityEngine.SceneManagement;
 
-public class ObjFromFile : MonoBehaviour
+public class Placemodel : MonoBehaviour
 {
     static string objPath = string.Empty;
     GameObject loadedObject;
@@ -55,8 +55,8 @@ public class ObjFromFile : MonoBehaviour
             ErrorManager.WirteInFile("Pasted the parenting part\n");
 
             //end
-            errorMessages.text = "ends here";
-            ErrorManager.WirteInFile("ends here\n");
+            errorMessages.text = "No Errors";
+            ErrorManager.WirteInFile("No Errors\n");
         }
         
         /*
@@ -78,20 +78,19 @@ public class ObjFromFile : MonoBehaviour
         Destroy(loadedObject);
         loadedObject = null;
     }
-    
 
-    private static string Findfile(string QRResults)
+    private static string Findfile(string Key)
     {
         //string directory = @"\storage\emulated\0\Download";
         var directory = Application.persistentDataPath;
         int compare;
         bool inFile = false;
-        string target = "", all = directory + "/" + QRResults;
+        string target = "", all = directory + "/" + Key;
         string path;
 
         foreach (string file in Directory.EnumerateFiles(directory, "*.obj"))
         {
-            compare = ObjFromFile.stringCompare(file, all);
+            compare = stringCompare(file, all);
             if(compare == 4){
                 target = file;
                 inFile = true;
