@@ -9,6 +9,7 @@ using UnityEngine;
 public class PlaceModel : MonoBehaviour
 {
     static string objPath = string.Empty;
+    static string MtlPath = string.Empty;
     GameObject loadedObject;
 
     public GameObject Gparent;
@@ -18,6 +19,7 @@ public class PlaceModel : MonoBehaviour
     void Start()
     {
         objPath = OutputPath();
+        MtlPath = OutputMtlPath();
         Path.text = OutputPath();
         ErrorManager.CreatingTextFile();
         DisplayModel();
@@ -40,7 +42,7 @@ public class PlaceModel : MonoBehaviour
             ErrorManager.WirteInFile("Should have loaded the object\n");
 
             //Loading 3D Model
-            loadedObject = new OBJLoader().Load(objPath);
+            loadedObject = new OBJLoader().Load(objPath, MtlPath);
 
             errorMessages.text = "Passed the Loading in";
             ErrorManager.WirteInFile("Passed the Loading in\n");
@@ -63,10 +65,9 @@ public class PlaceModel : MonoBehaviour
         return Findfile(QRResultManager.QRResults);
     }
 
-    public void deleteModel()
+    public static string OutputMtlPath()
     {
-        Destroy(loadedObject);
-        loadedObject = null;
+        return FindMtl(QRResultManager.QRResults);
     }
 
     private static string Findfile(string Key)
@@ -95,6 +96,38 @@ public class PlaceModel : MonoBehaviour
         else
         { 
             path = "No Path";
+            ErrorManager.WirteInFile("Path was not found\n");
+        }
+        
+        return path;
+    }
+
+    private static string FindMtl(string Key)
+    {
+        //string directory = @"\storage\emulated\0\Download";
+        var directory = Application.persistentDataPath;
+        int compare;
+        bool inFile = false;
+        string target = "", all = directory + "/" + Key;
+        string path;
+
+        foreach (string file in Directory.EnumerateFiles(directory, "*.mtl"))
+        {
+            compare = stringCompare(file, all);
+            if(compare == 4){
+                target = file;
+                inFile = true;
+                break;
+            }
+        }
+
+        if(inFile)
+        {
+            path = target;
+        }
+        else
+        { 
+            path = null;
             ErrorManager.WirteInFile("Path was not found\n");
         }
         
