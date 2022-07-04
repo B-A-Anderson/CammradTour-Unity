@@ -7,7 +7,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Placemodel : MonoBehaviour
+public class PlaceModel : MonoBehaviour
 {
     static string objPath = string.Empty;
     GameObject loadedObject;
