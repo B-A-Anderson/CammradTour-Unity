@@ -5,22 +5,20 @@ using System.Collections.Generic;
 using System.IO;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlaceModel : MonoBehaviour
 {
     static string objPath = string.Empty;
     GameObject loadedObject;
+
     public GameObject Gparent;
-
-    public TextMeshProUGUI textOut;
-
+    public TextMeshProUGUI Path;
     public TextMeshProUGUI errorMessages;
 
     void Start()
     {
         objPath = OutputPath();
-        textOut.text = OutputPath();
+        Path.text = OutputPath();
         ErrorManager.CreatingTextFile();
         DisplayModel();
     }
@@ -58,14 +56,6 @@ public class PlaceModel : MonoBehaviour
             errorMessages.text = "No Errors";
             ErrorManager.WirteInFile("No Errors\n");
         }
-        
-        /*
-        if(!string.IsNullOrWhiteSpace(error))
-        {
-            GUI.color = Color.red;
-            GUI.Box(new Rect(0, 64, 256 + 64, 32), error);
-            GUI.color = Color.white;
-        }*/
     }
 
     public static string OutputPath()
