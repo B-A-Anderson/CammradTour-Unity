@@ -9,7 +9,7 @@ using UnityEngine;
 public class PlaceModel : MonoBehaviour
 {
     static string objPath = string.Empty;
-    static string MtlPath = string.Empty;
+    //static string MtlPath = string.Empty;
     GameObject loadedObject;
 
     public GameObject Gparent;
@@ -19,7 +19,7 @@ public class PlaceModel : MonoBehaviour
     void Start()
     {
         objPath = OutputPath();
-        MtlPath = OutputMtlPath();
+        //MtlPath = OutputMtlPath();
         Path.text = OutputPath();
         ErrorManager.CreatingTextFile();
         DisplayModel();
@@ -42,17 +42,23 @@ public class PlaceModel : MonoBehaviour
             ErrorManager.WirteInFile("Should have loaded the object\n");
 
             //Loading 3D Model
-            loadedObject = new OBJLoader().Load(objPath, MtlPath);
+            //loadedObject = new OBJLoader().Load(objPath);
+            OBJLoader obj = new OBJLoader();
 
-            errorMessages.text = "Passed the Loading in";
-            ErrorManager.WirteInFile("Passed the Loading in\n");
+            errorMessages.text = "made the class object";
+            ErrorManager.WirteInFile("made the class object\n");
+
+            loadedObject = obj.Load(objPath);
+
+            errorMessages.text = "Passed the Loading";
+            ErrorManager.WirteInFile("Passed the Loading\n");
 
             //parenting
             loadedObject.transform.parent = Gparent.transform;
             loadedObject.transform.localPosition = new Vector3(0, -5, 0);
 
-            errorMessages.text = "Pasted the parenting part";
-            ErrorManager.WirteInFile("Pasted the parenting part\n");
+            errorMessages.text = "Passed the parenting part";
+            ErrorManager.WirteInFile("Passed the parenting part\n");
 
             //end
             errorMessages.text = "No Errors";
@@ -96,7 +102,7 @@ public class PlaceModel : MonoBehaviour
         else
         { 
             path = "No Path";
-            ErrorManager.WirteInFile("Path was not found\n");
+            ErrorManager.WirteInFile("obj path was not found\n");
         }
         
         return path;
@@ -128,7 +134,7 @@ public class PlaceModel : MonoBehaviour
         else
         { 
             path = null;
-            ErrorManager.WirteInFile("Path was not found\n");
+            ErrorManager.WirteInFile("Mtl path was not found\n");
         }
         
         return path;
