@@ -582,7 +582,7 @@ GameObject:
   - component: {fileID: 1063406802}
   - component: {fileID: 1063406801}
   m_Layer: 0
-  m_Name: Code Holder
+  m_Name: Present Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
