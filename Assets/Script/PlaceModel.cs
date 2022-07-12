@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Android;
 
 public class PlaceModel : MonoBehaviour
 {
@@ -18,6 +19,15 @@ public class PlaceModel : MonoBehaviour
 
     void Start()
     {
+        if (!Permission.HasUserAuthorizedPermission(Permission.ExternalStorageRead))
+        {
+            Permission.RequestUserPermission(Permission.ExternalStorageRead);
+        }
+        if (!Permission.HasUserAuthorizedPermission(Permission.ExternalStorageWrite))
+        {
+            Permission.RequestUserPermission(Permission.ExternalStorageWrite);
+        }
+
         objPath = OutputPath();
         //MtlPath = OutputMtlPath();
         Path.text = OutputPath();
@@ -38,31 +48,27 @@ public class PlaceModel : MonoBehaviour
             {
                 Destroy(loadedObject);
             }
-            errorMessages.text = "Should have loaded the object";
-            ErrorManager.WirteInFile("Should have loaded the object\n");
 
             //Loading 3D Model
             //loadedObject = new OBJLoader().Load(objPath);
             OBJLoader obj = new OBJLoader();
 
-            errorMessages.text = "made the class object";
-            ErrorManager.WirteInFile("made the class object\n");
-
-            loadedObject = obj.Load(objPath);
-
-            errorMessages.text = "Passed the Loading";
-            ErrorManager.WirteInFile("Passed the Loading\n");
+            try
+            {
+                loadedObject = obj.Load(objPath);
+            }
+            finally{
+                errorMessages.text = "Should have loaded the object";
+                ErrorManager.WirteInFile("Should have loaded the object\n");
+            }
 
             //parenting
             loadedObject.transform.parent = Gparent.transform;
             loadedObject.transform.localPosition = new Vector3(0, -5, 0);
 
-            errorMessages.text = "Passed the parenting part";
-            ErrorManager.WirteInFile("Passed the parenting part\n");
-
             //end
-            errorMessages.text = "No Errors";
-            ErrorManager.WirteInFile("No Errors\n");
+            errorMessages.text = "Code ended";
+            ErrorManager.WirteInFile("Code ended\n");
         }
     }
 
