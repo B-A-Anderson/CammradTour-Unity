@@ -53,14 +53,16 @@ public class PlaceModel : MonoBehaviour
             //loadedObject = new OBJLoader().Load(objPath);
             OBJLoader obj = new OBJLoader();
 
-            try
-            {
-                loadedObject = obj.Load(objPath);
-            }
-            finally{
+
+            loadedObject = obj.Load(objPath);
+
+            if (loadedObject != null) {
+                errorMessages.text = "The name of the object is" + loadedObject.scene;
+                ErrorManager.WirteInFile("The name of the object is" + loadedObject.name);
+            } else {
                 errorMessages.text = "Should have loaded the object";
                 ErrorManager.WirteInFile("Should have loaded the object\n");
-            }
+            }//end if
 
             //parenting
             loadedObject.transform.parent = Gparent.transform;
